@@ -42,7 +42,7 @@ export default function Home() {
     {
       id: 6,
       name: 'Valorant',
-      image: './valorant.png',
+      image: './valorant.jpg',
       rating: 6,
       tags: ['Action'],
     },
