@@ -107,23 +107,27 @@ export default function Home() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredGames.map(game => (
           <div key={game.id} className="border rounded-lg p-4 flex flex-col items-center">
-            <Image
-              src={game.image}
-              alt={game.name}
-              width={200}
-              height={300}
-              className="mb-4"
-            />
-            <h2 className="text-xl font-bold">{game.name}</h2>
-            <p className="text-lg">Rating: {game.rating}</p>
-            <div className="mt-2">
-              {game.tags.map(tag => (
-                <span key={tag} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          </div>
+  <Image
+    src={game.image}
+    alt={game.name}
+    width={200}      // Set the desired width
+    height={300}     // Set the desired height
+    style={{ objectFit: "cover" }}  // Adjust the image scaling behavior
+    className="mb-4"
+  />
+  <h2 className="text-xl font-bold">{game.name}</h2>
+  <p className="text-lg">Rating: {game.rating}</p>
+  <div className="mt-2">
+    {game.tags.map((tag) => (
+      <span
+        key={tag}
+        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+      >
+        #{tag}
+      </span>
+    ))}
+  </div>
+</div>
         ))}
       </div>
     </main>
