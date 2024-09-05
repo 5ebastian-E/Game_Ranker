@@ -44,7 +44,7 @@ export default function Home() {
       name: 'Valorant',
       image: './valorant.jpg',
       rating: 6,
-      tags: ['Action'],
+      tags: ['Action', 'FPS', 'Strategy'],
     },
   ];
 
