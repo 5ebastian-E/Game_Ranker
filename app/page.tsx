@@ -51,13 +51,15 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const toggleTag = (tag) => {
-    if (selectedTags.includes(tag)) {
-      setSelectedTags(selectedTags.filter(t => t !== tag));
-    } else {
-      setSelectedTags([...selectedTags, tag]);
-    }
-  };
+  const toggleTag = (tag: string) => {
+  if (selectedTags.includes(tag)) {
+
+    setSelectedTags(selectedTags.filter(t => t !== tag));
+  } else {
+
+    setSelectedTags([...selectedTags, tag]);
+  }
+};
 
   const filteredGames = gameData
     .filter(game => 
