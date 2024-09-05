@@ -8,7 +8,7 @@ export default function Home() {
     {
       id: 1,
       name: 'The Legend of Zelda: Breath of the Wild',
-      image: './zeldabotw.jpg',
+      image: './zeldabotw.jpg', // Make sure to add this image in the public folder
       rating: 9.8,
       tags: ['Adventure', 'Open World'],
     },
@@ -30,7 +30,7 @@ export default function Home() {
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTag, setSelectedTag] = useState('');
   
   // Handle search filtering by name
   const filteredGames = gameData
@@ -38,21 +38,12 @@ export default function Home() {
       game.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .filter(game =>
-      selectedTags.length === 0 || selectedTags.some(tag => game.tags.includes(tag))
+      selectedTag ? game.tags.includes(selectedTag) : true
     )
     .sort((a, b) => b.rating - a.rating); // Sort by rating
 
   // Get all tags for filtering
-  const allTags = Array.from(new Set(gameData.flatMap(game => game.tags)));
-
-  // Handle tag selection
-  const toggleTag = (tag: string) => {
-    setSelectedTags(prevTags => 
-      prevTags.includes(tag) 
-        ? prevTags.filter(t => t !== tag) 
-        : [...prevTags, tag]
-    );
-  };
+  const allTags = [...new Set(gameData.flatMap(game => game.tags))];
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -70,16 +61,16 @@ export default function Home() {
       {/* Tag Filter */}
       <div className="mb-4">
         <button 
-          onClick={() => setSelectedTags([])} 
-          className={`border p-2 mr-2 ${selectedTags.length === 0 ? 'bg-gray-300' : ''}`}
+          onClick={() => setSelectedTag('')} 
+          className={`border p-2 mr-2 ${selectedTag === '' ? 'bg-gray-300' : ''}`}
         >
           All
         </button>
         {allTags.map(tag => (
           <button 
             key={tag} 
-            onClick={() => toggleTag(tag)} 
-            className={`border p-2 mr-2 ${selectedTags.includes(tag) ? 'bg-gray-300' : ''}`}
+            onClick={() => setSelectedTag(tag)} 
+            className={`border p-2 mr-2 ${selectedTag === tag ? 'bg-gray-300' : ''}`}
           >
             {tag}
           </button>
