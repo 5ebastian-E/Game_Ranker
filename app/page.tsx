@@ -49,7 +49,7 @@ export default function Home() {
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const toggleTag = (tag: string) => {
   if (selectedTags.includes(tag)) {
