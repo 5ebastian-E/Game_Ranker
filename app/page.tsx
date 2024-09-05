@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 export default function Home() {
-
+  // Example game data
   const gameData = [
     {
       id: 1,
@@ -26,53 +26,67 @@ export default function Home() {
       rating: 9.7,
       tags: ['Adventure', 'Open World', 'Western'],
     },
+    // Add more games here...
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTag, setSelectedTag] = useState('');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   
+  // Handle search filtering by name
   const filteredGames = gameData
     .filter(game => 
       game.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .filter(game =>
-      selectedTag ? game.tags.includes(selectedTag) : true
+      selectedTags.length === 0 || selectedTags.some(tag => game.tags.includes(tag))
     )
-    .sort((a, b) => b.rating - a.rating);
+    .sort((a, b) => b.rating - a.rating); // Sort by rating
 
+  // Get all tags for filtering
+  const allTags = Array.from(new Set(gameData.flatMap(game => game.tags)));
 
-  const allTags = [...new Set(gameData.flatMap(game => game.tags))];
+  // Handle tag selection
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prevTags => 
+      prevTags.includes(tag) 
+        ? prevTags.filter(t => t !== tag) 
+        : [...prevTags, tag]
+    );
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-3xl font-bold mb-6">Video Game Rankings</h1>
 
+      {/* Search Bar */}
       <input
         type="text"
         placeholder="Search games..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="border rounded-lg p-2 mb-4 w-64"
+        className="border rounded-lg p-2 mb-4 w-64 text-black"
       />
 
+      {/* Tag Filter */}
       <div className="mb-4">
         <button 
-          onClick={() => setSelectedTag('')} 
-          className={`border p-2 mr-2 ${selectedTag === '' ? 'bg-gray-300' : ''}`}
+          onClick={() => setSelectedTags([])} 
+          className={`border p-2 mr-2 ${selectedTags.length === 0 ? 'bg-gray-300' : ''}`}
         >
           All
         </button>
         {allTags.map(tag => (
           <button 
             key={tag} 
-            onClick={() => setSelectedTag(tag)} 
-            className={`border p-2 mr-2 ${selectedTag === tag ? 'bg-gray-300' : ''}`}
+            onClick={() => toggleTag(tag)} 
+            className={`border p-2 mr-2 ${selectedTags.includes(tag) ? 'bg-gray-300' : ''}`}
           >
             {tag}
           </button>
         ))}
       </div>
 
+      {/* Game List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredGames.map(game => (
           <div key={game.id} className="border rounded-lg p-4 flex flex-col items-center">
