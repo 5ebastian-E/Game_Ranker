@@ -49,14 +49,24 @@ export default function Home() {
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTag, setSelectedTag] = useState('');
-  
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  const toggleTag = (tag) => {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter(t => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+
   const filteredGames = gameData
     .filter(game => 
       game.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .filter(game =>
-      selectedTag ? game.tags.includes(selectedTag) : true
+      selectedTags.length > 0
+        ? selectedTags.every(tag => game.tags.includes(tag))
+        : true
     )
     .sort((a, b) => b.rating - a.rating);
 
@@ -76,16 +86,16 @@ export default function Home() {
 
       <div className="mb-4">
         <button 
-          onClick={() => setSelectedTag('')} 
-          className={`border p-2 mr-2 ${selectedTag === '' ? 'bg-gray-300' : ''}`}
+          onClick={() => setSelectedTags([])} 
+          className={`border p-2 mr-2 ${selectedTags.length === 0 ? 'bg-gray-300' : ''}`}
         >
           All
         </button>
         {allTags.map(tag => (
           <button 
             key={tag} 
-            onClick={() => setSelectedTag(tag)} 
-            className={`border p-2 mr-2 ${selectedTag === tag ? 'bg-gray-300' : ''}`}
+            onClick={() => toggleTag(tag)} 
+            className={`border p-2 mr-2 ${selectedTags.includes(tag) ? 'bg-gray-300' : ''}`}
           >
             {tag}
           </button>
