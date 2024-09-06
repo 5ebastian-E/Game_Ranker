@@ -22,28 +22,28 @@ export default function Home() {
       id: 3,
       name: 'Red Dead Redemption 2',
       image: './reddead2.png',
-      rating: 8.9,
+      rating: 8.2,
       tags: ['open world', 'story-driven', 'western', 'action'],
     },
     {
       id: 4,
       name: 'Minecraft',
       image: './minecraft.jpg',
-      rating: 8,
+      rating: 7.5,
       tags: ['sandbox', 'survival', 'creative', 'multiplayer'],
     },
     {
       id: 5,
       name: 'Subnautica',
       image: './subnautica.jpg',
-      rating: 8.3,
+      rating: 8.1,
       tags: ['open world', 'survival', 'exploration', 'underwater'],
     },
     {
       id: 6,
       name: 'Valorant',
       image: './valorant.jpg',
-      rating: 6,
+      rating: 5.8,
       tags: ['multiplayer', 'shooter', 'FPS', 'competitive'],
     },
     {
@@ -57,14 +57,14 @@ export default function Home() {
       id: 8,
       name: 'CS:GO',
       image: './csgo.jpg',
-      rating: 7.9,
+      rating: 7.2,
       tags: ['shooter', 'multiplayer', 'FPS', 'competitive'],
     },
     {
       id: 9,
       name: 'Cyberpunk 2077',
       image: './cyberpunk.jpg',
-      rating: 8.6,
+      rating: 7.6,
       tags: ['open world', 'RPG', 'futuristic', 'story-driven'],
     },
     {
@@ -78,7 +78,7 @@ export default function Home() {
       id: 11,
       name: 'The Witcher 3',
       image: './witcher3.jpg',
-      rating: 8.5,
+      rating: 7.9,
       tags: ['open world', 'RPG', 'fantasy', 'story-driven'],
     },
     {
@@ -92,7 +92,7 @@ export default function Home() {
       id: 13,
       name: 'For Honor',
       image: './forhonor.jpg',
-      rating: 7.5,
+      rating: 6.4,
       tags: ['multiplayer', 'action', 'melee combat', 'historical'],
     },
     {
@@ -106,14 +106,14 @@ export default function Home() {
       id: 15,
       name: 'Path of Exile',
       image: './poe.jpg',
-      rating: 7.5,
+      rating: 6.8,
       tags: ['RPG', 'action', 'hack-and-slash', 'multiplayer'],
     },
     {
       id: 16,
       name: 'Dont Starve Together',
       image: './dst.jpg',
-      rating: 6.9,
+      rating: 6.5,
       tags: ['survival', 'multiplayer', 'indie', 'crafting'],
     },
     {
@@ -127,35 +127,35 @@ export default function Home() {
       id: 18,
       name: 'League of Legends',
       image: './lol.jpg',
-      rating: 8.1,
+      rating: 7.0,
       tags: ['MOBA', 'multiplayer', 'competitive', 'strategy'],
     },
     {
       id: 19,
       name: 'Once Human',
       image: './oncehuman.jpg',
-      rating: 6.9,
+      rating: 6.2,
       tags: ['survival', 'RPG', 'horror', 'multiplayer'],
     },
     {
       id: 20,
       name: 'Warframe',
       image: './warframe.png',
-      rating: 7.4,
+      rating: 7.3,
       tags: ['RPG', 'action', 'multiplayer', 'sci-fi'],
     },
     {
       id: 21,
       name: 'Portal',
       image: './portal.jpg',
-      rating: 8.7,
+      rating: 8.1,
       tags: ['puzzle', 'sci-fi', 'first-person'],
     },
     {
       id: 22,
       name: 'Portal 2',
       image: './portal2.jpg',
-      rating: 8.6,
+      rating: 8.2,
       tags: ['puzzle', 'co-op', 'sci-fi', 'first-person'],
     },
     {
@@ -169,7 +169,7 @@ export default function Home() {
       id: 24,
       name: 'Chained Together',
       image: './chainedtogether.jpg',
-      rating: 4,
+      rating: 5,
       tags: ['puzzle', 'indie', 'co-op'],
     },
     {
@@ -197,7 +197,7 @@ export default function Home() {
       id: 28,
       name: 'Dark and Darker',
       image: './dnd.jpg',
-      rating: 6.7,
+      rating: 6.4,
       tags: ['RPG', 'fantasy', 'dungeon crawler', 'multiplayer'],
     },
     {
@@ -211,35 +211,35 @@ export default function Home() {
       id: 30,
       name: 'Dishonored',
       image: './dishonored.jpg',
-      rating: 8.2,
+      rating: 7.8,
       tags: ['stealth', 'action', 'RPG', 'story-driven'],
     },
     {
       id: 31,
       name: 'Green Hell',
       image: './gh.jpg',
-      rating: 7.3,
+      rating: 6.8,
       tags: ['survival', 'open world', 'multiplayer'],
     },
     {
       id: 32,
       name: 'Lost in Random',
       image: './lir.jpg',
-      rating: 9.1,
+      rating: 8.9,
       tags: ['adventure', 'action', 'indie', 'story-driven'],
     },
     {
       id: 33,
       name: 'SCP Secret Laboratory',
       image: './scp.jpg',
-      rating: 8.4,
+      rating: 8.1,
       tags: ['horror', 'multiplayer', 'survival'],
     },
     {
       id: 34,
       name: 'GTA 5',
       image: './gta.jpg',
-      rating: 7.6,
+      rating: 7.1,
       tags: ['open world', 'action', 'multiplayer', 'story-driven'],
     },
     {
@@ -253,21 +253,21 @@ export default function Home() {
       id: 36,
       name: 'Skyrim',
       image: './skyrim.jpg',
-      rating: 6,
+      rating: 6.1,
       tags: ['open world', 'RPG', 'fantasy', 'story-driven'],
     },
     {
       id: 37,
       name: 'The Legend of Zelda: Twilight Princess',
       image: './tloztp.jpg',
-      rating: 7.2,
+      rating: 6.2,
       tags: ['action-adventure', 'fantasy', 'story-driven'],
     },
     {
       id: 38,
       name: 'Overwatch',
       image: './overwatch.jpg',
-      rating: 6.9,
+      rating: 6.5,
       tags: ['shooter', 'multiplayer', 'FPS', 'team-based'],
     },
     {
@@ -281,7 +281,7 @@ export default function Home() {
       id: 40,
       name: 'Slay the Princess',
       image: './stp.jpg',
-      rating: 8.2,
+      rating: 7.2,
       tags: ['visual novel', 'horror', 'story-driven'],
     },
     {
@@ -295,7 +295,7 @@ export default function Home() {
       id: 42,
       name: 'The Coffin of Andy and Leyley',
       image: './tcoaal.jpg',
-      rating: 8.7,
+      rating: 8.6,
       tags: ['visual novel', 'horror', 'story-driven'],
     },
     {
@@ -316,14 +316,14 @@ export default function Home() {
       id: 45,
       name: 'Hades',
       image: './hades.jpg',
-      rating: 8.6,
+      rating: 8.5,
       tags: ['roguelike', 'action', 'RPG', 'indie'],
     },
     {
       id: 46,
       name: 'Stardew Valley',
       image: './sdv.jpg',
-      rating: 7.6,
+      rating: 6.6,
       tags: ['simulation', 'farming', 'indie', 'multiplayer'],
     },
     {
@@ -358,7 +358,7 @@ export default function Home() {
       id: 51,
       name: 'Grounded',
       image: './grounded.jpg',
-      rating: 8.5,
+      rating: 7.9,
       tags: ['survival', 'multiplayer', 'open world'],
     },
     {
@@ -372,7 +372,7 @@ export default function Home() {
       id: 53,
       name: 'Dying Light 2',
       image: './dl2.jpg',
-      rating: 8.3,
+      rating: 8.1,
       tags: ['open world', 'action', 'survival', 'zombies'],
     },
   ];
@@ -417,7 +417,17 @@ export default function Home() {
       {showInfo && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm">
-            <p>This is a simple video game ranking system. You can filter by game name or select tags to see specific games.</p>
+            <p classname="text-black">{`
+            10-9 Best Games i have played
+            9-8 extremely good 
+            8-7 very good 
+            7-6 good 
+            5-6 ok 
+            4-5 meh
+            3-4 not good
+            2-3 bad
+            1-2 very bad
+            `}</p>
             <button 
               onClick={() => setShowInfo(false)} 
               className="mt-4 bg-red-500 text-white p-2 rounded"
