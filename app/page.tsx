@@ -417,7 +417,7 @@ export default function Home() {
       {showInfo && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm">
-            <p classname="text-black">{`
+            <p className="text-black">{`
             10-9 Best Games i have played
             9-8 extremely good 
             8-7 very good 
