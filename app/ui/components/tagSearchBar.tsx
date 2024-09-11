@@ -1,13 +1,13 @@
-import React, { useState, ChangeEvent, MouseEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 
 interface AutocompleteProps {
   availableTags: string[];
+  onSelectTag: (tag: string) => void;
 }
 
-const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags }) => {
+const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags, onSelectTag }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [filteredTags, setFilteredTags] = useState<string[]>([]);
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -24,7 +24,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags }) => {
   };
 
   const handleTagClick = (tag: string) => {
-    setSelectedTag(tag);
+    onSelectTag(tag);
     setInputValue(tag);
     setFilteredTags([]);
   };
@@ -51,12 +51,6 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags }) => {
             </li>
           ))}
         </ul>
-      )}
-
-      {selectedTag && (
-        <div className="mt-2 text-black">
-          <strong>Selected Tag: </strong>{selectedTag}
-        </div>
       )}
     </div>
   );
