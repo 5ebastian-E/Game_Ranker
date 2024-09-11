@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Autocomplete(availableTags: any[]) {
+export default function Autocomplete({availableTags}: {availableTags: string[]}) {
   const [inputValue, setInputValue] = useState('');
   const [filteredTags, setFilteredTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null);
