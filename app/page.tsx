@@ -377,22 +377,13 @@ export default function Home() {
       tags: ['open world', 'action', 'survival', 'zombies'],
     },
   ];
-const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showInfo, setShowInfo] = useState(false);
 
   // Function to handle the selection of tags from the Autocomplete component
-  const handleTagsSelect = (tags: string[]) => {
+  const handleTagSelect = (tags: string[]) => {
     setSelectedTags(tags);
-  };
-
-  // Function to toggle the tag selection
-  const toggleTag = (tag: string) => {
-    if (selectedTags.includes(tag)) {
-      setSelectedTags(selectedTags.filter(t => t !== tag));
-    } else {
-      setSelectedTags([...selectedTags, tag]);
-    }
   };
 
   // Filter games based on search term and selected tags
@@ -426,15 +417,15 @@ const [searchTerm, setSearchTerm] = useState('');
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm">
             <p className="text-black">{`
-            10-9 Best Games i have played
-            9-8 extremely good 
-            8-7 very good 
-            7-6 good 
-            5-6 ok 
-            4-5 meh
-            3-4 not good
-            2-3 bad
-            1-2 very bad
+            10-9 Best Games I have played
+            9-8 Extremely good 
+            8-7 Very good 
+            7-6 Good 
+            5-6 Ok 
+            4-5 Meh
+            3-4 Not good
+            2-3 Bad
+            1-2 Very bad
             `}</p>
             <button 
               onClick={() => setShowInfo(false)} 
@@ -446,7 +437,7 @@ const [searchTerm, setSearchTerm] = useState('');
         </div>
       )}
 
-      <Autocomplete availableTags={allTags} onSelectTags={handleTagsSelect} />
+      <Autocomplete availableTags={allTags} onSelectTags={handleTagSelect} />
 
       <input
         type="text"
@@ -461,17 +452,8 @@ const [searchTerm, setSearchTerm] = useState('');
           onClick={() => setSelectedTags([])} 
           className={`border p-2 mr-2 ${selectedTags.length === 0 ? 'bg-gray-300' : ''}`}
         >
-          All
+          Clear Tags
         </button>
-        {allTags.map(tag => (
-          <button 
-            key={tag} 
-            onClick={() => toggleTag(tag)} 
-            className={`border p-2 mr-2 ${selectedTags.includes(tag) ? 'bg-gray-300' : ''}`}
-          >
-            {tag}
-          </button>
-        ))}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
