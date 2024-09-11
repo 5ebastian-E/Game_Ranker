@@ -376,33 +376,36 @@ export default function Home() {
       tags: ['open world', 'action', 'survival', 'zombies'],
     },
   ];
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Function to update selected tags
   const handleTagSelect = (tags: string[]) => {
     setSelectedTags(tags);
   };
 
+  // Filter games by search term and selected tags
   const filteredGames = gameData
-    .filter(game => 
+    .filter((game) =>
       game.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    .filter(game =>
+    .filter((game) =>
       selectedTags.length > 0
-        ? selectedTags.every(tag => game.tags.includes(tag))
+        ? selectedTags.every((tag) => game.tags.includes(tag))
         : true
     )
     .sort((a, b) => b.rating - a.rating);
 
-  const allTags = [...new Set(gameData.flatMap(game => game.tags))];
+  // Get all unique tags from game data
+  const allTags = [...new Set(gameData.flatMap((game) => game.tags))];
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex items-center justify-center mb-6">
         <h1 className="text-3xl font-bold">Video Game Rankings</h1>
-        <button 
-          onClick={() => setShowInfo(true)} 
+        <button
+          onClick={() => setShowInfo(true)}
           className="ml-2 p-1 bg-blue-500 text-white rounded-full"
         >
           i
@@ -423,8 +426,8 @@ export default function Home() {
             2-3 Bad
             1-2 Very bad
             `}</p>
-            <button 
-              onClick={() => setShowInfo(false)} 
+            <button
+              onClick={() => setShowInfo(false)}
               className="mt-4 bg-red-500 text-white p-2 rounded"
             >
               Close
@@ -433,8 +436,10 @@ export default function Home() {
         </div>
       )}
 
+      {/* Autocomplete component for tag search */}
       <Autocomplete availableTags={allTags} onSelectTags={handleTagSelect} />
 
+      {/* Search input for game names */}
       <input
         type="text"
         placeholder="Search games..."
@@ -444,18 +449,24 @@ export default function Home() {
       />
 
       <div className="mb-4">
-        <button 
-          onClick={() => setSelectedTags([])} 
-          className={`border p-2 mr-2 ${selectedTags.length === 0 ? 'bg-gray-300' : ''}`}
+        <button
+          onClick={() => setSelectedTags([])}
+          className={`border p-2 mr-2 ${
+            selectedTags.length === 0 ? "bg-gray-300" : ""
+          }`}
         >
           Clear Tags
         </button>
       </div>
 
+      {/* Filtered game list */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredGames.length > 0 ? (
-          filteredGames.map(game => (
-            <div key={game.id} className="border rounded-lg p-4 flex flex-col items-center">
+          filteredGames.map((game) => (
+            <div
+              key={game.id}
+              className="border rounded-lg p-4 flex flex-col items-center"
+            >
               <Image
                 src={game.image}
                 alt={game.name}
@@ -486,37 +497,67 @@ export default function Home() {
   );
 }
 
+// Autocomplete Component
 interface AutocompleteProps {
   availableTags: string[];
   onSelectTags: (tags: string[]) => void;
 }
 
-const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags, onSelectTags }) => {
-  const [inputValue, setInputValue] = useState<string>('');
+const Autocomplete: React.FC<AutocompleteProps> = ({
+  availableTags,
+  onSelectTags,
+}) => {
+  const [inputValue, setInputValue] = useState<string>("");
   const [filteredTags, setFilteredTags] = useState<string[]>([]);
 
+  // Update input value and filter tags as user types
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setInputValue(value);
 
+    // Filter tags based on input
     if (value.length > 0) {
-      const filtered = availableTags.filter(tag =>
+      const filtered = availableTags.filter((tag) =>
         tag.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredTags(filtered);
     } else {
       setFilteredTags([]);
     }
+
+    // Update selected tags when manually entering a comma
+    const tags = value
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length > 0);
+    onSelectTags(tags);
   };
 
+  // Handle Enter key press to update tags
   const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter" && inputValue.trim()) {
       event.preventDefault();
-      const tags = inputValue.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+
+      const tags = inputValue
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag.length > 0);
+
       onSelectTags(tags);
-      setInputValue('');
+      setInputValue("");
       setFilteredTags([]);
     }
+  };
+
+  // Function to handle tag click from suggestions
+  const handleTagClick = (tag: string) => {
+    const currentTags = inputValue.split(",").map((t) => t.trim());
+    if (!currentTags.includes(tag)) {
+      const updatedTags = [...currentTags, tag].filter((t) => t.length > 0);
+      setInputValue(updatedTags.join(", ") + ", ");
+      onSelectTags(updatedTags);
+    }
+    setFilteredTags([]);
   };
 
   return (
@@ -535,16 +576,10 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags, onSelectTags
           {filteredTags.map((tag, index) => (
             <li
               key={index}
-              onClick={() => {
-                const tags = inputValue.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
-                if (!tags.includes(tag)) {
-                  tags.push(tag);
-                }
-                onSelectTags(tags);
-                setInputValue('');
-                setFilteredTags([]);
-              }}
-              className={`text-black px-3 py-2 cursor-pointer ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'} hover:bg-gray-200`}
+              onClick={() => handleTagClick(tag)}
+              className={`text-black px-3 py-2 cursor-pointer ${
+                index % 2 === 0 ? "bg-gray-100" : "bg-white"
+              } hover:bg-gray-200`}
             >
               {tag}
             </li>
