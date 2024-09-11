@@ -385,6 +385,13 @@ const [searchTerm, setSearchTerm] = useState('');
   const handleTagSelect = (tag: string) => {
     setSelectedTag(tag);
   };
+  const toggleTag = (tag: string) => {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter(t => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
 
   const filteredGames = gameData
     .filter(game => 
