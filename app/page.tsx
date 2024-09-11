@@ -379,12 +379,14 @@ export default function Home() {
   ];
 const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleTagSelect = (tag: string) => {
-    setSelectedTag(tag);
+  // Function to handle the selection of tags from the Autocomplete component
+  const handleTagsSelect = (tags: string[]) => {
+    setSelectedTags(tags);
   };
+
+  // Function to toggle the tag selection
   const toggleTag = (tag: string) => {
     if (selectedTags.includes(tag)) {
       setSelectedTags(selectedTags.filter(t => t !== tag));
@@ -393,15 +395,19 @@ const [searchTerm, setSearchTerm] = useState('');
     }
   };
 
+  // Filter games based on search term and selected tags
   const filteredGames = gameData
     .filter(game => 
       game.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .filter(game =>
-      selectedTag ? game.tags.includes(selectedTag) : true
+      selectedTags.length > 0
+        ? selectedTags.every(tag => game.tags.includes(tag))
+        : true
     )
     .sort((a, b) => b.rating - a.rating);
 
+  // Get all unique tags from the game data
   const allTags = [...new Set(gameData.flatMap(game => game.tags))];
 
   return (
@@ -440,7 +446,7 @@ const [searchTerm, setSearchTerm] = useState('');
         </div>
       )}
 
-      <Autocomplete availableTags={allTags} onSelectTag={handleTagSelect} />
+      <Autocomplete availableTags={allTags} onSelectTags={handleTagsSelect} />
 
       <input
         type="text"
