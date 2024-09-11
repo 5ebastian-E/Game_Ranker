@@ -9,7 +9,7 @@ export default function Home() {
       id: 1,
       name: 'The Legend of Zelda: Breath of the Wild',
       image: './zeldabotw.jpg',
-      rating: 8.5,
+      rating: 8.4,
       tags: ['open world', 'action-adventure', 'exploration'],
     },
     {
