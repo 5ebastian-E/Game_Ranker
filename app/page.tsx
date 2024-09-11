@@ -515,10 +515,13 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
     const value = event.target.value;
     setInputValue(value);
 
-    // Filter tags based on input
-    if (value.length > 0) {
+    // Get the last tag being typed (after the last comma)
+    const lastTag = value.split(",").pop()?.trim() || "";
+
+    // Filter tags based on the last tag being typed
+    if (lastTag.length > 0) {
       const filtered = availableTags.filter((tag) =>
-        tag.toLowerCase().includes(value.toLowerCase())
+        tag.toLowerCase().includes(lastTag.toLowerCase())
       );
       setFilteredTags(filtered);
     } else {
