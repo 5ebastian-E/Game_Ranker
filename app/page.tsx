@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import Image from 'next/image';
+import Autocomplete from './ui/components/tagSearchBar.tsx'
 
 export default function Home() {
   const gameData = [
@@ -437,6 +438,7 @@ export default function Home() {
           </div>
         </div>
       )}
+      <Autocomplete availableTags={allTags} />
 
       <input
         type="text"
