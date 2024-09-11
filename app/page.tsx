@@ -1,5 +1,5 @@
 "use client";
-import { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Home() {
@@ -10,6 +10,8 @@ export default function Home() {
       image: "./zeldabotw.jpg",
       rating: 8.4,
       tags: ["open world", "action-adventure", "exploration"],
+      prominentTags: ["open world", "action-adventure"],
+      description: "An epic adventure in a massive open world, where players explore and discover mysteries in the land of Hyrule.",
     },
     {
       id: 2,
@@ -17,11 +19,14 @@ export default function Home() {
       image: "./gow2014.jpg",
       rating: 9.2,
       tags: ["story-driven", "action", "hack-and-slash", "mythology"],
+      prominentTags: ["action", "mythology"],
+      description: "A story-driven game that follows Kratos as he faces challenges inspired by Norse mythology.",
     },
   ];
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [showInfo, setShowInfo] = useState(false);
+  const [showInfoId, setShowInfoId] = useState<number | null>(null);
 
   const handleTagSelect = (tags: string[]) => {
     setSelectedTags(tags);
@@ -44,37 +49,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex items-center justify-center mb-6">
         <h1 className="text-3xl font-bold">Video Game Rankings</h1>
-        <button
-          onClick={() => setShowInfo(true)}
-          className="ml-2 p-1 bg-blue-500 text-white rounded-full"
-        >
-          i
-        </button>
       </div>
-
-      {showInfo && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm">
-            <p className="text-black">{`
-            10-9 Best Games I have played
-            9-8 Extremely good 
-            8-7 Very good 
-            7-6 Good 
-            5-6 Ok 
-            4-5 Meh
-            3-4 Not good
-            2-3 Bad
-            1-2 Very bad
-            `}</p>
-            <button
-              onClick={() => setShowInfo(false)}
-              className="mt-4 bg-red-500 text-white p-2 rounded"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
 
       <Autocomplete availableTags={allTags} onSelectTags={handleTagSelect} />
 
@@ -91,7 +66,7 @@ export default function Home() {
           filteredGames.map((game) => (
             <div
               key={game.id}
-              className="border rounded-lg p-4 flex flex-col items-center"
+              className="relative border rounded-lg p-4 flex flex-col items-center"
             >
               <Image
                 src={game.image}
@@ -103,8 +78,10 @@ export default function Home() {
               />
               <h2 className="text-xl font-bold">{game.name}</h2>
               <p className="text-lg">Rating: {game.rating}</p>
+
+              {/* Show prominent tags below the image */}
               <div className="mt-2">
-                {game.tags.map((tag) => (
+                {game.prominentTags.map((tag) => (
                   <span
                     key={tag}
                     className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
@@ -113,6 +90,43 @@ export default function Home() {
                   </span>
                 ))}
               </div>
+
+              {/* Info Button */}
+              <button
+                onClick={() => setShowInfoId(game.id)}
+                className="absolute top-2 right-2 p-2 bg-blue-500 text-white rounded-full text-sm"
+              >
+                i
+              </button>
+
+              {/* Show full game info when info button is clicked */}
+              {showInfoId === game.id && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                  <div className="bg-white p-6 rounded-lg shadow-lg max-w-md">
+                    <h3 className="text-2xl font-bold mb-4">{game.name}</h3>
+                    <p className="mb-4">{game.description}</p>
+
+                    <div className="mt-2">
+                      <h4 className="font-bold">All Tags:</h4>
+                      {game.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => setShowInfoId(null)}
+                      className="mt-4 bg-red-500 text-white p-2 rounded"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           ))
         ) : (
@@ -135,15 +149,12 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
   const [inputValue, setInputValue] = useState<string>("");
   const [filteredTags, setFilteredTags] = useState<string[]>([]);
 
-  // Update input value and filter tags as user types
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setInputValue(value);
 
-    // Get the last tag being typed (after the last comma)
     const lastTag = value.split(",").pop()?.trim() || "";
 
-    // Filter tags based on the last tag being typed
     if (lastTag.length > 0) {
       const filtered = availableTags.filter((tag) =>
         tag.toLowerCase().includes(lastTag.toLowerCase())
@@ -153,7 +164,6 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
       setFilteredTags([]);
     }
 
-    // Update selected tags when manually entering a comma
     const tags = value
       .split(",")
       .map((tag) => tag.trim())
@@ -161,7 +171,6 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
     onSelectTags(tags);
   };
 
-  // Handle Enter key press to update tags
   const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && inputValue.trim()) {
       event.preventDefault();
@@ -177,23 +186,17 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
     }
   };
 
-  // Function to handle tag click from suggestions
   const handleTagClick = (tag: string) => {
-    // Split input by commas, remove any extra spaces
     const currentTags = inputValue.split(",").map((t) => t.trim());
 
-    // Replace the last part of the input (incomplete tag) with the clicked suggestion
     if (currentTags.length > 0) {
-      currentTags[currentTags.length - 1] = tag; // Replace the last entered tag with the clicked tag
+      currentTags[currentTags.length - 1] = tag;
     }
 
     const updatedInputValue = currentTags.join(", ") + ", ";
     setInputValue(updatedInputValue);
 
-    // Update the selected tags list
     onSelectTags(currentTags.filter((t) => t.length > 0));
-
-    // Clear the suggestions
     setFilteredTags([]);
   };
 
@@ -226,3 +229,17 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
     </div>
   );
 };
+Key Changes:
+Added prominentTags and description properties to the gameData object. You can fill in these values.
+Displaying prominentTags under the game image: Only the prominent tags (up to 3) are shown initially.
+Added an info button (i) on the top-right of each game card, which toggles a modal displaying the full tags and description of the game.
+Modal: When clicking the info button, a modal appears with the full game details, and it can be closed by clicking the "Close" button.
+You can now fill the prominentTags
+
+
+
+
+
+
+
+
