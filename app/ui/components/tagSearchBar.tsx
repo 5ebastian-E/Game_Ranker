@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import React, { useState, ChangeEvent, MouseEvent } from 'react';
 
-export default function Autocomplete({availableTags}: {availableTags: string[]}) {
-  const [inputValue, setInputValue] = useState('');
-  const [filteredTags, setFilteredTags] = useState([]);
-  const [selectedTag, setSelectedTag] = useState(null);
+interface AutocompleteProps {
+  availableTags: string[];
+}
 
-  const handleInputChange = (event) => {
+const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags }) => {
+  const [inputValue, setInputValue] = useState<string>('');
+  const [filteredTags, setFilteredTags] = useState<string[]>([]);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setInputValue(value);
 
@@ -19,7 +23,7 @@ export default function Autocomplete({availableTags}: {availableTags: string[]})
     }
   };
 
-  const handleTagClick = (tag) => {
+  const handleTagClick = (tag: string) => {
     setSelectedTag(tag);
     setInputValue(tag);
     setFilteredTags([]);
@@ -56,4 +60,6 @@ export default function Autocomplete({availableTags}: {availableTags: string[]})
       )}
     </div>
   );
-}
+};
+
+export default Autocomplete;
