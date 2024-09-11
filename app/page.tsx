@@ -376,8 +376,7 @@ export default function Home() {
       rating: 8.1,
       tags: ['open world', 'action', 'survival', 'zombies'],
     },
-  ];
-  const [searchTerm, setSearchTerm] = useState('');
+  ];const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showInfo, setShowInfo] = useState(false);
 
