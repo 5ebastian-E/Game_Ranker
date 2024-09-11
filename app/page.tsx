@@ -377,17 +377,13 @@ export default function Home() {
       tags: ['open world', 'action', 'survival', 'zombies'],
     },
   ];
-
-  const [searchTerm, setSearchTerm] = useState('');
+const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [showInfo, setShowInfo] = useState(false);
 
-  const toggleTag = (tag: string) => {
-    if (selectedTags.includes(tag)) {
-      setSelectedTags(selectedTags.filter(t => t !== tag));
-    } else {
-      setSelectedTags([...selectedTags, tag]);
-    }
+  const handleTagSelect = (tag: string) => {
+    setSelectedTag(tag);
   };
 
   const filteredGames = gameData
@@ -395,9 +391,7 @@ export default function Home() {
       game.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .filter(game =>
-      selectedTags.length > 0
-        ? selectedTags.every(tag => game.tags.includes(tag))
-        : true
+      selectedTag ? game.tags.includes(selectedTag) : true
     )
     .sort((a, b) => b.rating - a.rating);
 
@@ -438,7 +432,8 @@ export default function Home() {
           </div>
         </div>
       )}
-      <Autocomplete availableTags={allTags} />
+
+      <Autocomplete availableTags={allTags} onSelectTag={handleTagSelect} />
 
       <input
         type="text"
