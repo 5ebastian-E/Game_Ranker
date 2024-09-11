@@ -551,12 +551,21 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
 
   // Function to handle tag click from suggestions
   const handleTagClick = (tag: string) => {
+    // Split input by commas, remove any extra spaces
     const currentTags = inputValue.split(",").map((t) => t.trim());
-    if (!currentTags.includes(tag)) {
-      const updatedTags = [...currentTags, tag].filter((t) => t.length > 0);
-      setInputValue(updatedTags.join(", ") + ", ");
-      onSelectTags(updatedTags);
+
+    // Replace the last part of the input (incomplete tag) with the clicked suggestion
+    if (currentTags.length > 0) {
+      currentTags[currentTags.length - 1] = tag; // Replace the last entered tag with the clicked tag
     }
+
+    const updatedInputValue = currentTags.join(", ") + ", ";
+    setInputValue(updatedInputValue);
+
+    // Update the selected tags list
+    onSelectTags(currentTags.filter((t) => t.length > 0));
+
+    // Clear the suggestions
     setFilteredTags([]);
   };
 
