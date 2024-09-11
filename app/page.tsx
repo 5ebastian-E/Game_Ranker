@@ -376,16 +376,15 @@ export default function Home() {
       rating: 8.1,
       tags: ['open world', 'action', 'survival', 'zombies'],
     },
-  ];const [searchTerm, setSearchTerm] = useState('');
+  ];
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showInfo, setShowInfo] = useState(false);
 
-  // Function to handle the selection of tags from the Autocomplete component
   const handleTagSelect = (tags: string[]) => {
     setSelectedTags(tags);
   };
 
-  // Filter games based on search term and selected tags
   const filteredGames = gameData
     .filter(game => 
       game.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -397,7 +396,6 @@ export default function Home() {
     )
     .sort((a, b) => b.rating - a.rating);
 
-  // Get all unique tags from the game data
   const allTags = [...new Set(gameData.flatMap(game => game.tags))];
 
   return (
@@ -456,30 +454,34 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredGames.map(game => (
-          <div key={game.id} className="border rounded-lg p-4 flex flex-col items-center">
-            <Image
-              src={game.image}
-              alt={game.name}
-              width={200}
-              height={300}
-              style={{ objectFit: "cover" }}
-              className="mb-4"
-            />
-            <h2 className="text-xl font-bold">{game.name}</h2>
-            <p className="text-lg">Rating: {game.rating}</p>
-            <div className="mt-2">
-              {game.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                >
-                  #{tag}
-                </span>
-              ))}
+        {filteredGames.length > 0 ? (
+          filteredGames.map(game => (
+            <div key={game.id} className="border rounded-lg p-4 flex flex-col items-center">
+              <Image
+                src={game.image}
+                alt={game.name}
+                width={200}
+                height={300}
+                style={{ objectFit: "cover" }}
+                className="mb-4"
+              />
+              <h2 className="text-xl font-bold">{game.name}</h2>
+              <p className="text-lg">Rating: {game.rating}</p>
+              <div className="mt-2">
+                {game.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="text-lg">No games found.</p>
+        )}
       </div>
     </main>
   );
