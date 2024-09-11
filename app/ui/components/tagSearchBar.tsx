@@ -1,14 +1,14 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
 
 interface AutocompleteProps {
   availableTags: string[];
-  onSelectTag: (tag: string) => void;
+  onSelectTags: (tags: string[]) => void;
 }
 
-const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags, onSelectTag }) => {
+const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags, onSelectTags }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [filteredTags, setFilteredTags] = useState<string[]>([]);
-
+  
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setInputValue(value);
@@ -24,9 +24,20 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags, onSelectTag 
   };
 
   const handleTagClick = (tag: string) => {
-    onSelectTag(tag);
-    setInputValue(tag);
+    const tags = inputValue.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+    tags.push(tag);
+    onSelectTags(tags);
+    setInputValue('');
     setFilteredTags([]);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === ',') {
+      event.preventDefault();
+      const tags = inputValue.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+      onSelectTags(tags);
+      setInputValue('');
+    }
   };
 
   return (
@@ -36,6 +47,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags, onSelectTag 
         placeholder="Search tags..."
         value={inputValue}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
         className="text-black w-full px-3 py-2 border border-gray-300 rounded-lg"
       />
 
