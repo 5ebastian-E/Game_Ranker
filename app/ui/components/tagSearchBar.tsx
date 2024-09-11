@@ -36,7 +36,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags }) => {
         placeholder="Search tags..."
         value={inputValue}
         onChange={handleInputChange}
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+        className="text-black w-full px-3 py-2 border border-gray-300 rounded-lg"
       />
 
       {filteredTags.length > 0 && (
@@ -45,7 +45,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags }) => {
             <li
               key={index}
               onClick={() => handleTagClick(tag)}
-              className={`px-3 py-2 cursor-pointer ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'} hover:bg-gray-200`}
+              className={`text-black px-3 py-2 cursor-pointer ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'} hover:bg-gray-200`}
             >
               {tag}
             </li>
@@ -54,7 +54,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ availableTags }) => {
       )}
 
       {selectedTag && (
-        <div className="mt-2 text-green-600">
+        <div className="mt-2 text-black">
           <strong>Selected Tag: </strong>{selectedTag}
         </div>
       )}
