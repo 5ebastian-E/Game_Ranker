@@ -1,7 +1,7 @@
 "use client"
 import { useState } from 'react';
 import Image from 'next/image';
-import Autocomplete from './ui/components/tagSearchBar.tsx'
+import Autocomplete from './ui/components/tagSearchBar'
 
 export default function Home() {
   const gameData = [
