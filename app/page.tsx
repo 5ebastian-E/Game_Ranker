@@ -229,17 +229,3 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
     </div>
   );
 };
-Key Changes:
-Added prominentTags and description properties to the gameData object. You can fill in these values.
-Displaying prominentTags under the game image: Only the prominent tags (up to 3) are shown initially.
-Added an info button (i) on the top-right of each game card, which toggles a modal displaying the full tags and description of the game.
-Modal: When clicking the info button, a modal appears with the full game details, and it can be closed by clicking the "Close" button.
-You can now fill the prominentTags
-
-
-
-
-
-
-
-
