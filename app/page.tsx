@@ -7,7 +7,7 @@ export default function Home() {
       "id": 1,
       "name": "The Legend of Zelda: Breath of the Wild",
       "image": "./zeldabotw.jpg",
-      "rating": 8.4,
+      "rating": 8.3,
       "tags": ["open world", "action-adventure", "exploration", "fantasy", "RPG", "puzzle-solving", "combat", "sandbox"],
       "prominentTags": ["open world", "action-adventure", "exploration"],
       "description": "An epic adventure set in a breathtaking open world. Players explore vast landscapes, solve puzzles, and engage in dynamic combat while uncovering the mysteries of Hyrule."
