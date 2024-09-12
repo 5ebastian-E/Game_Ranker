@@ -694,8 +694,8 @@ export default function Home() {
 
               {/* Show full game info when info button is clicked */}
               {showInfoId === game.id && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                  <div className="bg-white p-6 rounded-lg shadow-lg max-w-md">
+                <div className="z-50 fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                  <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md">
                     <h3 className="text-2xl font-bold mb-4">{game.name}</h3>
                     <p className="mb-4">{game.description}</p>
                     <p className="mb-4">This Description was AI Generated</p>
