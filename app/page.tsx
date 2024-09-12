@@ -483,7 +483,7 @@ export default function Home() {
     {
       id: 54,
       name: 'Might and Magic Heroes 6',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['strategy', 'turn-based', 'RPG', 'fantasy'],
       prominentTags: ['strategy', 'RPG', 'fantasy'],
@@ -492,7 +492,7 @@ export default function Home() {
     {
       id: 55,
       name: 'Warhammer 40k Boltgun',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['shooter', 'action', 'warhammer', 'sci-fi'],
       prominentTags: ['shooter', 'warhammer', 'sci-fi'],
@@ -501,7 +501,7 @@ export default function Home() {
     {
       id: 56,
       name: 'PvZ Garden Warfare',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['shooter', 'multiplayer', 'tower defense', 'comedy'],
       prominentTags: ['shooter', 'multiplayer', 'tower defense'],
@@ -510,7 +510,7 @@ export default function Home() {
     {
       id: 57,
       name: 'Kingdom 2 Crowns',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['strategy', 'pixel art', 'indie', 'co-op'],
       prominentTags: ['strategy', 'pixel art', 'co-op'],
@@ -519,7 +519,7 @@ export default function Home() {
     {
       id: 58,
       name: 'Sims 4',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['simulation', 'life simulation', 'building', 'sandbox'],
       prominentTags: ['simulation', 'life simulation', 'building'],
@@ -528,7 +528,7 @@ export default function Home() {
     {
       id: 59,
       name: 'Team Fortress 2',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['shooter', 'multiplayer', 'team-based', 'comedy'],
       prominentTags: ['shooter', 'multiplayer', 'team-based'],
@@ -537,7 +537,7 @@ export default function Home() {
     {
       id: 60,
       name: 'Spore',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['simulation', 'sandbox', 'evolution', 'creative'],
       prominentTags: ['simulation', 'sandbox', 'evolution'],
@@ -546,7 +546,7 @@ export default function Home() {
     {
       id: 61,
       name: 'Starwars Battlefront 2',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['shooter', 'multiplayer', 'star wars', 'sci-fi'],
       prominentTags: ['shooter', 'star wars', 'multiplayer'],
@@ -555,7 +555,7 @@ export default function Home() {
     {
       id: 62,
       name: 'Minecraft Dungeons',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['dungeon crawler', 'action', 'multiplayer', 'fantasy'],
       prominentTags: ['dungeon crawler', 'action', 'multiplayer'],
@@ -564,7 +564,7 @@ export default function Home() {
     {
       id: 63,
       name: 'Divinity 2',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['RPG', 'fantasy', 'story-driven', 'action'],
       prominentTags: ['RPG', 'fantasy', 'story-driven'],
@@ -573,7 +573,7 @@ export default function Home() {
     {
       id: 64,
       name: 'Dauntless',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['RPG', 'action', 'multiplayer', 'fantasy'],
       prominentTags: ['RPG', 'action', 'multiplayer'],
@@ -582,7 +582,7 @@ export default function Home() {
     {
       id: 65,
       name: 'Dungeon Defender 2',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['tower defense', 'RPG', 'multiplayer', 'fantasy'],
       prominentTags: ['tower defense', 'RPG', 'multiplayer'],
@@ -591,7 +591,7 @@ export default function Home() {
     {
       id: 66,
       name: 'Terraria',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['sandbox', 'adventure', 'survival', 'building'],
       prominentTags: ['sandbox', 'adventure', 'survival'],
@@ -600,7 +600,7 @@ export default function Home() {
     {
       id: 67,
       name: 'The Forest',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['survival', 'horror', 'open world', 'multiplayer'],
       prominentTags: ['survival', 'horror', 'open world'],
@@ -609,7 +609,7 @@ export default function Home() {
     {
       id: 68,
       name: 'Sons of the Forest',
-      image: './noimage.jpg',
+      image: './noimage.png',
       rating: 5,
       tags: ['survival', 'horror', 'open world', 'multiplayer'],
       prominentTags: ['survival', 'horror', 'multiplayer'],
